@@ -415,9 +415,9 @@ class array:
       sr, sc = self.strides
       mr, mc = mask
       if mr<0:
-        mr = r-mr
+        mr = r+mr
       if mc<0:
-        mc = c-mc
+        mc = c+mc
       idx = mr*sc+mc*sr
       if idx<len(self.arr):
         self.arr[idx]=val
