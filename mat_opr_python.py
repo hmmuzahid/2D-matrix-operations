@@ -296,6 +296,8 @@ class array:
         col_pointer += otdr # Skip 1 row stride
       row_pointer += stdc # Skip 1 column stride
     
+    if len(res) == 1:
+      return res[0]
     return array(res, (sr, osc))
   
   def __len__(self):
