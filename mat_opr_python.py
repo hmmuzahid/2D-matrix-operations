@@ -4,7 +4,7 @@ try:
   import numpy as np
 except ImportError:
   np = None
-
+import math
 
 class array:
   '''It stores data as follows
@@ -19,6 +19,8 @@ class array:
   def __init__(self, arr=None, shape=None, strides=None, r_limit=6, c_limit=6):
     if arr is None:
       arr = []
+    if isinstance(arr, (int, float, bool)):
+      arr = [arr]
     self.r_limit = r_limit
     self.c_limit = c_limit
 
@@ -578,15 +580,23 @@ def where(mask, val1, val2):
 
 
 
+def exp(x):
+  return array([math.e**i for i in x.arr], x.shape)
+
+
+def zeros(shape, **kwargs):
+  return array([0.0]*(shape[0]*shape[1]), shape)
+
+
 if __name__ == "__main__":
-  a = array([1, 2])
+
   #Compare the results agains numpy
   a = array([[1, 2, 3], [4, 5, 6]])
   b = array([[10], [20]])
 
   na = np.array([[1, 2, 3], [4, 5, 6]])
   nb = np.array([[10], [20]])
-
+  
   print("Broadcasting")
   print("Custom:")
   print(a + b)
